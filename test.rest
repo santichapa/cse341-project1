@@ -1,0 +1,11 @@
+### Get all users
+GET http://localhost:3000/users
+Content-Type: application/json
+
+###
+
+### Get a user by ID
+GET http://localhost:3000/users/{67cf6640c496c1df7b8c4bf6}
+Content-Type: application/json
+
+// Replace {userId} with a valid user ID from your database
