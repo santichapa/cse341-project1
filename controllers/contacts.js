@@ -35,5 +35,74 @@ const getContact = async (req, res) => {
   });
 };
 
-module.exports = { getAllContacts, getContact
- };
+const createContact = async (req, res) => {
+  const contact = {
+    professionalName: req.body.professionalName,
+    base64Image: req.body.base64Image,  
+    nameLink: {
+      firstName: req.body.nameLink.firstName,
+      url: req.body.nameLink.url
+    },
+    primaryDescription: req.body.primaryDescription,
+    workDescription: req.body.workDescription1,
+    workDescription2: req.body.workDescription2,
+    linkTitleText: req.body.linkTitleText,
+    linkedInLink: {
+      text: req.body.linkedInLink.text,
+      link: req.body.linkedInLink.link
+    },
+    githubLink: {
+      text: req.body.githubLink.text,
+      link: req.body.githubLink.link
+    }
+  };
+  const response = await mongodb.getDatabase().collection("contacts").insertOne(contact);
+
+  if (response.acknowledged > 0) {
+    res.status(200).send("Contact created successfully");
+  } else {
+    res.status(500).json(response.error || "Error creating contact");
+  }
+}
+
+const updateContact = async (req, res) => {
+  const contactId = req.params.id;
+    const contact = {
+    professionalName: req.body.professionalName,
+    base64Image: req.body.base64Image,  
+    nameLink: {
+      firstName: req.body.nameLink.firstName,
+      url: req.body.nameLink.url
+    },
+    primaryDescription: req.body.primaryDescription,
+    workDescription: req.body.workDescription1,
+    workDescription2: req.body.workDescription2,
+    linkTitleText: req.body.linkTitleText,
+    linkedInLink: {
+      text: req.body.linkedInLink.text,
+      link: req.body.linkedInLink.link
+    },
+    githubLink: {
+      text: req.body.githubLink.text,
+      link: req.body.githubLink.link
+    }
+  };
+  const response = await mongodb.getDatabase().collection("contacts").replaceOne({_id: contactId}, contact);
+
+  if (response.modifiedCount > 0) {
+    res.status(200).send("Contact updated successfully");
+  } else {
+    res.status(500).json(response.error || "Error updating contact");
+  }
+}
+
+const deleteContact = async (req, res) => {
+  const contactId = new ObjectId(req.params.id);
+  const response = await mongodb.getDatabase().collection("contacts").deleteOne({_id: contactId}, true);
+  if (response.deletedCount > 0) {
+    res.status(200).send("Contact deleted successfully");
+  }
+}
+
+
+module.exports = { getAllContacts, getContact, createContact, updateContact, deleteContact};
