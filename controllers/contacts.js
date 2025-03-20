@@ -40,24 +40,11 @@ const getContact = async (req, res) => {
 const createContact = async (req, res) => {
   //#swagger.tags = ['Contacts']
   const contact = {
-    professionalName: req.body.professionalName,
-    base64Image: req.body.base64Image,  
-    nameLink: {
-      firstName: req.body.nameLink.firstName,
-      url: req.body.nameLink.url
-    },
-    primaryDescription: req.body.primaryDescription,
-    workDescription: req.body.workDescription1,
-    workDescription2: req.body.workDescription2,
-    linkTitleText: req.body.linkTitleText,
-    linkedInLink: {
-      text: req.body.linkedInLink.text,
-      link: req.body.linkedInLink.link
-    },
-    githubLink: {
-      text: req.body.githubLink.text,
-      link: req.body.githubLink.link
-    }
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday
   };
   const response = await mongodb.getDatabase().collection("contacts").insertOne(contact);
 
@@ -70,27 +57,14 @@ const createContact = async (req, res) => {
 
 const updateContact = async (req, res) => {
   //#swagger.tags = ['Contacts']
-  const contactId = req.params.id;
+  const contactId = new ObjectId(req.params.id);
     const contact = {
-    professionalName: req.body.professionalName,
-    base64Image: req.body.base64Image,  
-    nameLink: {
-      firstName: req.body.nameLink.firstName,
-      url: req.body.nameLink.url
-    },
-    primaryDescription: req.body.primaryDescription,
-    workDescription: req.body.workDescription1,
-    workDescription2: req.body.workDescription2,
-    linkTitleText: req.body.linkTitleText,
-    linkedInLink: {
-      text: req.body.linkedInLink.text,
-      link: req.body.linkedInLink.link
-    },
-    githubLink: {
-      text: req.body.githubLink.text,
-      link: req.body.githubLink.link
-    }
-  };
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      favoriteColor: req.body.favoriteColor,
+      birthday: req.body.birthday
+    };
   const response = await mongodb.getDatabase().collection("contacts").replaceOne({_id: contactId}, contact);
 
   if (response.modifiedCount > 0) {
