@@ -48,31 +48,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "professionalName": {
+                "firstName": {
                   "example": "any"
                 },
-                "base64Image": {
+                "lastName": {
                   "example": "any"
                 },
-                "nameLink": {
+                "email": {
                   "example": "any"
                 },
-                "primaryDescription": {
+                "favoriteColor": {
                   "example": "any"
                 },
-                "workDescription1": {
-                  "example": "any"
-                },
-                "workDescription2": {
-                  "example": "any"
-                },
-                "linkTitleText": {
-                  "example": "any"
-                },
-                "linkedInLink": {
-                  "example": "any"
-                },
-                "githubLink": {
+                "birthday": {
                   "example": "any"
                 }
               }
@@ -136,31 +124,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "professionalName": {
+                "firstName": {
                   "example": "any"
                 },
-                "base64Image": {
+                "lastName": {
                   "example": "any"
                 },
-                "nameLink": {
+                "email": {
                   "example": "any"
                 },
-                "primaryDescription": {
+                "favoriteColor": {
                   "example": "any"
                 },
-                "workDescription1": {
-                  "example": "any"
-                },
-                "workDescription2": {
-                  "example": "any"
-                },
-                "linkTitleText": {
-                  "example": "any"
-                },
-                "linkedInLink": {
-                  "example": "any"
-                },
-                "githubLink": {
+                "birthday": {
                   "example": "any"
                 }
               }
