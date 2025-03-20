@@ -2,6 +2,7 @@ const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
 
 const getAllContacts = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const db = await mongodb.getDatabase();
   db.collection("contacts")
     .find()
@@ -16,6 +17,7 @@ const getAllContacts = async (req, res) => {
 };
 
 const getContact = async (req, res) => {
+  //#swagger.tags = ['Contacts']
     const contactId = req.params.id;
 
     if (!ObjectId.isValid(contactId)) {
@@ -36,6 +38,7 @@ const getContact = async (req, res) => {
 };
 
 const createContact = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const contact = {
     professionalName: req.body.professionalName,
     base64Image: req.body.base64Image,  
@@ -66,6 +69,7 @@ const createContact = async (req, res) => {
 }
 
 const updateContact = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const contactId = req.params.id;
     const contact = {
     professionalName: req.body.professionalName,
@@ -97,6 +101,7 @@ const updateContact = async (req, res) => {
 }
 
 const deleteContact = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const contactId = new ObjectId(req.params.id);
   const response = await mongodb.getDatabase().collection("contacts").deleteOne({_id: contactId}, true);
   if (response.deletedCount > 0) {
